@@ -44,3 +44,32 @@ Stage Summary:
   future scope, roadmap (3 phases), technical recommendations, 6 risks, 10 assumptions.
 - Explicitly marks "No AI" throughout; architecture noted as AI-ready but deterministic.
 - Sticky sidebar TOC, sticky footer, responsive (390px → 4K), accessible headings/ARIA.
+
+---
+Task ID: 2
+Agent: main
+Task: Translate the entire Beauty Center specification document into Arabic with full RTL layout support.
+
+Work Log:
+- Read existing files (layout, globals, sidebar-nav, spec-data, page).
+- layout.tsx: set lang="ar" dir="rtl"; replaced Geist sans with Cairo (Google Fonts, arabic+latin subsets); Arabic metadata.
+- globals.css: set --font-sans to Cairo; added .ltr helper for code blocks; RTL-aware note rules.
+- spec-data.ts: translated all prose to Arabic (roles, summaries, screens, permissions matrix 33 rows, 12 modules, 40 DB table descriptions + column notes, 65 API endpoint descriptions, roadmap phases, user flows). Kept technical identifiers (table/column names, types, API paths, HTTP methods, PK/FK) in English/Latin as they are code.
+- sidebar-nav.tsx: Arabic labels + groups; sidebar border swapped r→l (now sits on the right in RTL); mobile drawer border swapped; nav buttons text-right.
+- page.tsx: translated all hero/section/footer content to Arabic; wrapped process/flow diagrams and code tables (DB columns, API endpoints) in dir="ltr" so arrows/diagrams read naturally while Arabic labels render correctly; flipped border-l/r in notes (border-r-2 → pr-3); gradient direction bg-gradient-to-br → bg-gradient-to-bl for RTL.
+- Browser verification (agent-browser):
+  - lang=ar, dir=rtl confirmed on <html>.
+  - Title + h1 in Arabic; Cairo font applied to body + headings (verified via computed font-family).
+  - Sidebar correctly positioned on the RIGHT (x 992→1280), main content on left (x 0).
+  - All 16 sections present; Arabic nav labels render; scroll-spy active state updates in Arabic.
+  - Click nav → smooth-scrolls to section at 80px offset; works desktop + mobile.
+  - 33 permission rows, 40 DB table cards, 11 API tables render.
+  - Mobile hamburger drawer opens with Arabic nav, navigates.
+  - Footer renders Arabic at page bottom.
+  - No console/runtime errors; lint clean.
+
+Stage Summary:
+- Full Arabic RTL version delivered at `/`.
+- Technical/code content (DB schema, API paths, HTTP methods, types) intentionally kept in English for correctness; all descriptive/prose content in Arabic.
+- Cairo font ensures proper Arabic glyph shaping and a polished look.
+- Layout fully RTL-aware: sidebar right, text right-aligned, code blocks LTR for readability.

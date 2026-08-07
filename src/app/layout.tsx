@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Cairo, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const cairo = Cairo({
+  variable: "--font-cairo",
+  subsets: ["arabic", "latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
@@ -14,28 +15,28 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Beauty Center Management Platform — Specification",
+  title: "منصة إدارة مركز التجميل — المواصفات",
   description:
-    "A complete, production-ready specification for a modern Beauty Center Management Platform. Deterministic, rule-driven, multi-tenant ready. No AI.",
+    "مواصفات كاملة جاهزة للإنتاج لمنصة حديثة لإدارة مراكز التجميل. نظام حتمي قائم على القواعد، جاهز لتعدد المستأجرين. بدون ذكاء اصطناعي.",
   keywords: [
-    "Beauty Center",
-    "Management Platform",
-    "Specification",
+    "مركز تجميل",
+    "منصة إدارة",
+    "مواصفات",
     "SaaS",
-    "Multi-tenant",
-    "Appointments",
-    "POS",
+    "تعدد المستأجرين",
+    "مواعيد",
+    "نقطة بيع",
     "CRM",
   ],
-  authors: [{ name: "Product Architecture" }],
+  authors: [{ name: "هندسة المنتج" }],
   icons: {
     icon: "https://z-cdn.chatglm.cn/z-ai/static/logo.svg",
   },
   openGraph: {
-    title: "Beauty Center Management Platform — Specification",
+    title: "منصة إدارة مركز التجميل — المواصفات",
     description:
-      "A production-ready specification: roles, modules, database design, API, architecture, security, MVP/V2 roadmap.",
-    siteName: "Beauty Center Spec",
+      "مواصفات جاهزة للإنتاج: الأدوار، الوحدات، تصميم قاعدة البيانات، الواجهات البرمجية، البنية، الأمان، وخارطة طريق MVP/V2.",
+    siteName: "مواصفات مركز التجميل",
     type: "website",
   },
 };
@@ -46,9 +47,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="ar" dir="rtl" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
+        className={`${cairo.variable} ${geistMono.variable} antialiased bg-background text-foreground font-sans`}
       >
         {children}
         <Toaster />
