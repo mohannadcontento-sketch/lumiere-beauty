@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Sparkles, Eye, EyeOff, Lock, Mail } from "lucide-react";
 import { toast } from "sonner";
+import salonHero from "../../../public/salon-hero.png";
 
 const DEMO_ACCOUNTS = [
   { role: "المالك", email: "owner@beauty-demo.com", color: "#003527", desc: "صلاحية كاملة على كل الوحدات" },
@@ -176,7 +177,7 @@ export function LoginScreen() {
       {/* Left side (visually in RTL): brand imagery */}
       <div className="relative hidden lg:block lg:w-1/2">
         <img
-          src="/salon-hero.png"
+          src={salonHero.src}
           alt="صالون لوميير بيوتي الفاخر"
           className="h-full w-full object-cover"
         />
