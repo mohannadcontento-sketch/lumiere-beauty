@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+
+<html class="light" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>لوحة القيادة - Lumière Beauty</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Public+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#5f5e5b",
+                        "surface-tint": "#2b6954",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#80bea6",
+                        "surface-container-high": "#eae7eb",
+                        "surface": "#fbf8fc",
+                        "inverse-surface": "#303033",
+                        "secondary-fixed": "#e5e2dd",
+                        "primary-fixed": "#b0f0d6",
+                        "background": "#fbf8fc",
+                        "outline": "#707974",
+                        "on-primary-fixed-variant": "#0b513d",
+                        "on-secondary-fixed": "#1c1c19",
+                        "primary-container": "#064e3b",
+                        "inverse-primary": "#95d3ba",
+                        "on-error": "#ffffff",
+                        "secondary-fixed-dim": "#c9c6c2",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#404944",
+                        "outline-variant": "#bfc9c3",
+                        "on-tertiary-container": "#4e3d00",
+                        "on-secondary-container": "#656461",
+                        "tertiary-fixed": "#ffe088",
+                        "error": "#ba1a1a",
+                        "primary": "#003527",
+                        "tertiary": "#735c00",
+                        "primary-fixed-dim": "#95d3ba",
+                        "on-primary-fixed": "#002117",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#cca72f",
+                        "on-background": "#1b1b1e",
+                        "inverse-on-surface": "#f3f0f4",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#fbf8fc",
+                        "surface-container": "#f0edf1",
+                        "on-tertiary-fixed": "#241a00",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#e4e1e5",
+                        "on-secondary-fixed-variant": "#474743",
+                        "surface-dim": "#dcd9dd",
+                        "surface-container-low": "#f5f3f6",
+                        "on-surface": "#1b1b1e",
+                        "surface-variant": "#e4e1e5",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "secondary-container": "#e5e2dd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "container-max": "1440px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "xxl": "64px",
+                        "xl": "40px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "body-lg": ["Public Sans"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "body-md": ["Public Sans"],
+                        "body-sm": ["Public Sans"],
+                        "label-md": ["Public Sans"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: theme('colors.background'); color: theme('colors.on-background'); }
+        /* Chart container responsiveness */
+        .chart-container { position: relative; height: 300px; width: 100%; }
+    </style>
+</head>
+<body class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col bg-secondary-container dark:bg-surface-container-low h-screen w-64 fixed right-0 top-0 border-l border-outline-variant dark:border-outline z-40 transition-all duration-200 ease-in-out py-lg">
+<div class="px-6 mb-8 flex flex-col items-center">
+<div class="w-20 h-20 rounded-full overflow-hidden mb-4 bg-surface flex items-center justify-center border border-outline-variant">
+<img alt="Practitioner Profile" class="w-full h-full object-cover" data-alt="A sophisticated, high-end logo for a luxury beauty salon named Lumière Beauty. The logo features delicate, thin-line typography in a deep emerald green on a clean white background. A subtle gold geometric leaf emblem sits above the text, conveying a sense of organic elegance and premium care." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoWUn9R6bXmli9ktnSFLg3CalTrOUD5QhKwsqmnZkhrgE41RdUOnqeDkuQ1Mv30sKr2VkNGj_vIHV5-X9NPTqxhyUNKHRbY4rGj9TAxQsUILl-nmjT1pz_NN0TzP9HtmCdrGdzzfKNusXodeMxILvpne1Bj8akeCmxRVOuzWsOUGjRolR-JfCjOrp12mzuV6PCu73eoOQCHoQ0uL0km-gGfEudJnkfV2H2-tYNok8x3qWksE2NG7HK"/>
+</div>
+<h1 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed text-center">Lumière Beauty</h1>
+<p class="font-body-sm text-body-sm text-secondary text-center mt-1">إدارة النخبة</p>
+</div>
+<nav class="flex-1 overflow-y-auto w-full">
+<ul class="flex flex-col w-full font-body-md text-body-md">
+<li class="w-full">
+<a class="flex items-center gap-3 px-4 py-3 text-primary dark:text-primary-fixed border-r-4 border-primary dark:border-primary-fixed bg-surface dark:bg-surface-container-high font-bold hover:bg-surface-container-highest dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span>لوحة القيادة</span>
+</a>
+</li>
+<li class="w-full">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span>التقويم</span>
+</a>
+</li>
+<li class="w-full">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span>العملاء</span>
+</a>
+</li>
+<li class="w-full">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">content_cut</span>
+<span>الخدمات</span>
+</a>
+</li>
+<li class="w-full">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">badge</span>
+<span>الموظفين</span>
+</a>
+</li>
+<li class="w-full">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">point_of_sale</span>
+<span>نقطة البيع</span>
+</a>
+</li>
+<li class="w-full">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span>المخزون</span>
+</a>
+</li>
+<li class="w-full">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">loyalty</span>
+<span>الولاء</span>
+</a>
+</li>
+<li class="w-full">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">campaign</span>
+<span>التسويق</span>
+</a>
+</li>
+<li class="w-full">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span>التقارير</span>
+</a>
+</li>
+<li class="w-full mt-auto border-t border-outline-variant">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant dark:text-surface-variant hover:bg-surface-container-highest dark:hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>الإعدادات</span>
+</a>
+</li>
+</ul>
+</nav>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col md:mr-64 w-full">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center h-16 px-xl w-full sticky top-0 z-50 bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline">
+<!-- Mobile Menu Trigger -->
+<button class="md:hidden text-primary p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-8 font-headline-md text-headline-md h-full">
+<a class="h-full flex items-center text-primary font-bold border-b-2 border-primary pb-1 active:scale-95 transition-transform" href="#">فرع باريس</a>
+<a class="h-full flex items-center text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors active:scale-95 transition-transform" href="#">فرع لندن</a>
+</nav>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-6">
+<!-- Search -->
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pr-10 pl-4 py-2 bg-surface-container rounded-full border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/10 font-body-sm text-body-sm w-64 transition-all" placeholder="بحث..." type="text"/>
+</div>
+<div class="flex items-center gap-2 text-primary">
+<button class="p-2 rounded-full hover:bg-surface-container-highest transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-highest transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+<button class="hidden md:flex bg-primary text-on-primary px-6 py-2 rounded-full font-body-sm text-body-sm hover:bg-primary/90 transition-colors shadow-sm">
+                    موعد جديد
+                </button>
+<div class="w-10 h-10 rounded-full bg-secondary-container overflow-hidden border border-outline-variant cursor-pointer">
+<img alt="Manager Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a female salon manager. She has an elegant, friendly expression, wearing a tailored dark emerald green blazer. The background is a soft, out-of-focus high-end salon interior with warm lighting. The image conveys trust, luxury, and professional competence in a light-mode setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADt8z3PQhjt-c_qGzQD4FfSs9-AuZTHI9FYk9NNhkfoZhlUdLJpZrIPaN22N151kM8kZ1kiYmi__83zYcZpqqr5kPMQvoQHdhdLalgljFL1okiq-Pw9kN6nZmuUgNsIH0Lt8FZw7aChTf501EGK7WnKL42oozltfnmaWKMeRBKShiamqAYW_B6TzDWwE70gdj_2itw-BfxUdAdf2SAjdzfUI7aA5CbqcBfiH2xP6E_CO8WeAqT8t3e"/>
+</div>
+</div>
+</header>
+<!-- Dashboard Canvas -->
+<main class="flex-1 p-md md:p-xl lg:p-xxl max-w-container-max mx-auto w-full">
+<div class="mb-lg flex justify-between items-end">
+<div>
+<h2 class="font-display-lg text-display-lg text-primary mb-2">صباح الخير، إليانور</h2>
+<p class="font-body-lg text-body-lg text-secondary">إليك ما يحدث في فرع باريس اليوم.</p>
+</div>
+<div class="hidden sm:flex items-center gap-2 bg-surface-container px-4 py-2 rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-outline">calendar_today</span>
+<span class="font-body-md text-body-md text-on-surface">24 أكتوبر 2023</span>
+</div>
+</div>
+<!-- 12-Column Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-lg">
+<!-- Metrics Row (Full Width spanning) -->
+<div class="col-span-1 md:col-span-6 lg:col-span-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
+<!-- Metric 1 -->
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-label-md text-label-md text-secondary uppercase tracking-widest">إيرادات اليوم</h3>
+<div class="p-2 bg-primary-container/20 rounded-full text-primary">
+<span class="material-symbols-outlined">payments</span>
+</div>
+</div>
+<div>
+<p class="font-headline-lg text-headline-lg text-on-surface mb-1">$4,250</p>
+<div class="flex items-center gap-1 text-sm">
+<span class="material-symbols-outlined text-surface-tint text-base">trending_up</span>
+<span class="text-surface-tint font-body-sm font-medium">+12% مقارنة بالأمس</span>
+</div>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-label-md text-label-md text-secondary uppercase tracking-widest">المواعيد</h3>
+<div class="p-2 bg-secondary-container rounded-full text-secondary">
+<span class="material-symbols-outlined">event_available</span>
+</div>
+</div>
+<div>
+<p class="font-headline-lg text-headline-lg text-on-surface mb-1">18</p>
+<div class="flex items-center gap-1 text-sm">
+<span class="font-body-sm text-secondary">متبقي 4 اليوم</span>
+</div>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-label-md text-label-md text-secondary uppercase tracking-widest">عملاء جدد</h3>
+<div class="p-2 bg-tertiary-container/20 rounded-full text-tertiary">
+<span class="material-symbols-outlined">person_add</span>
+</div>
+</div>
+<div>
+<p class="font-headline-lg text-headline-lg text-on-surface mb-1">5</p>
+<div class="flex items-center gap-1 text-sm">
+<span class="material-symbols-outlined text-surface-tint text-base">trending_up</span>
+<span class="text-surface-tint font-body-sm font-medium">على المسار للهدف الأسبوعي</span>
+</div>
+</div>
+</div>
+<!-- Metric 4 -->
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-label-md text-label-md text-secondary uppercase tracking-widest">عملاء عائدون</h3>
+<div class="p-2 bg-primary-fixed rounded-full text-on-primary-fixed">
+<span class="material-symbols-outlined">group</span>
+</div>
+</div>
+<div>
+<p class="font-headline-lg text-headline-lg text-on-surface mb-1">13</p>
+<div class="flex items-center gap-1 text-sm">
+<span class="font-body-sm text-secondary">72% معدل الاحتفاظ</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Chart Area -->
+<div class="col-span-1 md:col-span-6 lg:col-span-8 bg-surface-container-lowest p-lg rounded-xl border border-outline-variant">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface">الإيرادات والمواعيد</h3>
+<select class="bg-surface-container border-none text-body-sm rounded-lg py-1 pr-3 pl-8 focus:ring-0 cursor-pointer">
+<option>هذا الأسبوع</option>
+<option>الأسبوع الماضي</option>
+<option>هذا الشهر</option>
+</select>
+</div>
+<div class="chart-container">
+<canvas id="mainChart"></canvas>
+</div>
+</div>
+<!-- Alerts & Notifications -->
+<div class="col-span-1 md:col-span-6 lg:col-span-4 flex flex-col gap-lg">
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant flex-1">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">تنبيهات عاجلة</h3>
+<div class="flex flex-col gap-3">
+<div class="flex items-start gap-3 p-3 bg-error-container/30 border border-error-container rounded-lg">
+<span class="material-symbols-outlined text-error mt-0.5">warning</span>
+<div>
+<p class="font-body-sm font-semibold text-on-surface">مخزون منخفض: زيت شعر Oribe</p>
+<p class="font-label-md text-secondary mt-1">وحدتان فقط متبقية.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-3 bg-tertiary-container/20 border border-tertiary-container rounded-lg">
+<span class="material-symbols-outlined text-tertiary mt-0.5">star</span>
+<div>
+<p class="font-body-sm font-semibold text-on-surface">وصول عميل VIP الساعة 2:00 م</p>
+<p class="font-label-md text-secondary mt-1">إيزابيلا ر. - جهز الجناح الخاص.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 p-3 bg-surface-container rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-secondary mt-0.5">info</span>
+<div>
+<p class="font-body-sm font-semibold text-on-surface">اجتماع الموظفين غداً</p>
+<p class="font-label-md text-secondary mt-1">9:00 ص - تخطيط الربع الثالث.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Top Services (Bento Grid Style) -->
+<div class="col-span-1 md:col-span-3 lg:col-span-4 bg-surface-container-lowest p-lg rounded-xl border border-outline-variant">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-6">أعلى الخدمات اليوم</h3>
+<ul class="flex flex-col gap-4">
+<li class="flex items-center justify-between pb-4 border-b border-outline-variant/50 last:border-0 last:pb-0">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">spa</span>
+</div>
+<div>
+<p class="font-body-md font-medium text-on-surface">هيدرافيشيل مميز</p>
+<p class="font-label-md text-secondary">6 مواعيد</p>
+</div>
+</div>
+<span class="font-body-md font-semibold text-on-surface">$1,500</span>
+</li>
+<li class="flex items-center justify-between pb-4 border-b border-outline-variant/50 last:border-0 last:pb-0">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">content_cut</span>
+</div>
+<div>
+<p class="font-body-md font-medium text-on-surface">بالياج وتصفيف</p>
+<p class="font-label-md text-secondary">4 مواعيد</p>
+</div>
+</div>
+<span class="font-body-md font-semibold text-on-surface">$1,120</span>
+</li>
+<li class="flex items-center justify-between pb-4 border-b border-outline-variant/50 last:border-0 last:pb-0">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">face_retouching_natural</span>
+</div>
+<div>
+<p class="font-body-md font-medium text-on-surface">مساج الأنسجة العميقة</p>
+<p class="font-label-md text-secondary">3 مواعيد</p>
+</div>
+</div>
+<span class="font-body-md font-semibold text-on-surface">$450</span>
+</li>
+</ul>
+</div>
+<!-- Staff Performance -->
+<div class="col-span-1 md:col-span-3 lg:col-span-4 bg-surface-container-lowest p-lg rounded-xl border border-outline-variant">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-6">أداء الموظفين</h3>
+<div class="flex flex-col gap-5">
+<!-- Staff 1 -->
+<div>
+<div class="flex justify-between items-center mb-2">
+<div class="flex items-center gap-2">
+<img alt="Chloe S." class="w-8 h-8 rounded-full object-cover border border-outline-variant" data-alt="A small circular portrait of a female salon stylist, professional and smiling, wearing a sleek black uniform against a soft cream background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTT3C8ePrFG1jldp1pyfv32eACLs_PynMXSHf226LixTbv97pWEw6Nh6PH9fgseS-RrbEN2dN_zEo6u1e8jJMZL6yPlTfjoHf53sJO6ha4GGHtJvCj_uthuVaursqY-wqLXm6PwetqwBtMy2yUJOWj_WY75Tc-SoQZvOCeiVFhsbvgfo3Qdl1pMcv1lwJqh3eEGdmL0_g7vL-4IbxqsKuZoRdeWGYvuDhsSh2mhdGi2xTP_8UyRx4l"/>
+<span class="font-body-md text-on-surface">كلوي س.</span>
+</div>
+<span class="font-label-md font-bold text-primary">95% محجوز</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 95%"></div>
+</div>
+</div>
+<!-- Staff 2 -->
+<div>
+<div class="flex justify-between items-center mb-2">
+<div class="flex items-center gap-2">
+<img alt="Marcus T." class="w-8 h-8 rounded-full object-cover border border-outline-variant" data-alt="A small circular portrait of a male massage therapist, calm demeanor, wearing a professional gray tunic against a minimalist white wall." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCs6vpMUUF_K6zdzPP63b6zlOhJNG3Cpa-5x_vCyxl5E76cXNVfG8GXUI0RV3cICh9schLHLJdy-bPgrVYxfhGaahvBPC6EjZODc-U2Fb5YZV_OHLyd9EuthP7aEtMwnZXnsSvXqyFUUzaOvuY8mVAO9I1hiA_CErdxlKws9rRIQIgk3s3pW3WnYGb3v30EO6ONfHSFMK6egCTzEz4HgrRZdly_rvUjEKJw4NDfmr9MFm5V_FRN8bvP"/>
+<span class="font-body-md text-on-surface">ماركوس ت.</span>
+</div>
+<span class="font-label-md font-bold text-surface-tint">80% محجوز</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-surface-tint h-full rounded-full" style="width: 80%"></div>
+</div>
+</div>
+<!-- Staff 3 -->
+<div>
+<div class="flex justify-between items-center mb-2">
+<div class="flex items-center gap-2">
+<img alt="Sophie L." class="w-8 h-8 rounded-full object-cover border border-outline-variant" data-alt="A small circular portrait of a female esthetician, radiant skin, wearing a crisp white uniform in a well-lit studio environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA68POQhUqq2zZS3cL2dRx39vxlUZKgMJWAjtsflmZZ9LPjurJ0_0fYEtCfecriWoOMPnRLPgZSOpp_UzEiJovJQ6DuDOIFGduvsIn81EM6ANcz5WeX40gNk-V8kj5E05axqHn6FRU8wdrV3qFkPYQHEjpihuO8ILi6OyvlTlmT4cgvNeGoxMr_1Bp89g_KFmaT3DmPEhn9CwqvCZAQJYIZIL-f71HWYOZYyYNQjpBTHowK7H2K3da"/>
+<span class="font-body-md text-on-surface">صوفي ل.</span>
+</div>
+<span class="font-label-md font-bold text-secondary">65% محجوز</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 65%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Activity Timeline -->
+<div class="col-span-1 md:col-span-6 lg:col-span-4 bg-surface-container-lowest p-lg rounded-xl border border-outline-variant">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-6">النشاط الأخير</h3>
+<div class="relative border-r border-outline-variant mr-3 space-y-6">
+<div class="relative pr-6">
+<div class="absolute -right-[5px] top-1 w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-surface-container-lowest"></div>
+<p class="font-body-sm font-semibold text-on-surface">تم استلام الدفعة: $250</p>
+<p class="font-label-md text-secondary mt-1">منذ 10 دقائق • إيما و. (بالياج)</p>
+</div>
+<div class="relative pr-6">
+<div class="absolute -right-[5px] top-1 w-2.5 h-2.5 rounded-full bg-secondary ring-4 ring-surface-container-lowest"></div>
+<p class="font-body-sm font-semibold text-on-surface">تمت إضافة حجز جديد</p>
+<p class="font-label-md text-secondary mt-1">منذ 45 دقيقة • سارة ج. عبر الويب</p>
+</div>
+<div class="relative pr-6">
+<div class="absolute -right-[5px] top-1 w-2.5 h-2.5 rounded-full bg-surface-tint ring-4 ring-surface-container-lowest"></div>
+<p class="font-body-sm font-semibold text-on-surface">تم الانتهاء من الموعد</p>
+<p class="font-label-md text-secondary mt-1">منذ 1 ساعة • جيمس د. (استشارة)</p>
+</div>
+<div class="relative pr-6">
+<div class="absolute -right-[5px] top-1 w-2.5 h-2.5 rounded-full bg-secondary ring-4 ring-surface-container-lowest"></div>
+<p class="font-body-sm font-semibold text-on-surface">تم تحديث المخزون</p>
+<p class="font-label-md text-secondary mt-1">منذ 2 ساعة • مزامنة تلقائية للنظام</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-surface dark:bg-surface-container-lowest border-t border-outline-variant dark:border-outline shadow-md rounded-t-xl flex justify-around items-center px-4 py-2">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-md text-label-md mt-1">الرئيسية</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:bg-surface-container dark:hover:bg-surface-container-high rounded-full px-4 py-1 active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-label-md text-label-md mt-1">حجز</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:bg-surface-container dark:hover:bg-surface-container-high rounded-full px-4 py-1 active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined">event_note</span>
+<span class="font-label-md text-label-md mt-1">السجل</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:bg-surface-container dark:hover:bg-surface-container-high rounded-full px-4 py-1 active:scale-90 transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md mt-1">الملف الشخصي</span>
+</a>
+</nav>
+<!-- Chart Initialization Script -->
+<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const ctx = document.getElementById('mainChart').getContext('2d');
+            
+            // Brand Colors from Tailwind Config
+            const emeraldPrimary = '#003527';
+            const sageSecondary = '#80bea6';
+            const taupeLine = '#e4e1e5';
+            const onSurface = '#1b1b1e';
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['الإثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت', 'الأحد'],
+                    datasets: [
+                        {
+                            label: 'الإيرادات ($)',
+                            data: [3200, 4100, 3800, 4250, 5100, 6200, 4800],
+                            backgroundColor: emeraldPrimary,
+                            borderRadius: 4,
+                            yAxisID: 'y'
+                        },
+                        {
+                            label: 'المواعيد',
+                            data: [12, 15, 14, 18, 22, 28, 20],
+                            type: 'line',
+                            borderColor: sageSecondary,
+                            backgroundColor: sageSecondary,
+                            borderWidth: 2,
+                            tension: 0.4,
+                            pointRadius: 4,
+                            pointBackgroundColor: '#ffffff',
+                            pointBorderColor: sageSecondary,
+                            pointBorderWidth: 2,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            align: 'end',
+                            labels: {
+                                usePointStyle: true,
+                                boxWidth: 8,
+                                font: { family: 'Public Sans', size: 12 },
+                                color: onSurface
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: '#303033',
+                            titleFont: { family: 'Public Sans', size: 14 },
+                            bodyFont: { family: 'Public Sans', size: 13 },
+                            padding: 12,
+                            cornerRadius: 8,
+                            displayColors: true
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false, drawBorder: false },
+                            ticks: { font: { family: 'Public Sans', size: 12 }, color: '#656461' }
+                        },
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            grid: { color: taupeLine, drawBorder: false },
+                            ticks: {
+                                font: { family: 'Public Sans', size: 12 }, color: '#656461',
+                                callback: function(value) { return '$' + value; }
+                            },
+                            border: { dash: [4, 4] }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            grid: { display: false, drawBorder: false },
+                            ticks: { font: { family: 'Public Sans', size: 12 }, color: '#656461' }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body></html>

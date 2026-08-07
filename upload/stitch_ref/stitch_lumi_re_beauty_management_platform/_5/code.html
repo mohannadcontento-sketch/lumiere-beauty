@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html class="h-full" dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lumière Beauty - POS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#5f5e5b",
+                        "surface-tint": "#2b6954",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#80bea6",
+                        "surface-container-high": "#eae7eb",
+                        "surface": "#fbf8fc",
+                        "inverse-surface": "#303033",
+                        "secondary-fixed": "#e5e2dd",
+                        "primary-fixed": "#b0f0d6",
+                        "background": "#fbf8fc",
+                        "outline": "#707974",
+                        "on-primary-fixed-variant": "#0b513d",
+                        "on-secondary-fixed": "#1c1c19",
+                        "primary-container": "#064e3b",
+                        "inverse-primary": "#95d3ba",
+                        "on-error": "#ffffff",
+                        "secondary-fixed-dim": "#c9c6c2",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#404944",
+                        "outline-variant": "#bfc9c3",
+                        "on-tertiary-container": "#4e3d00",
+                        "on-secondary-container": "#656461",
+                        "tertiary-fixed": "#ffe088",
+                        "error": "#ba1a1a",
+                        "primary": "#003527",
+                        "tertiary": "#735c00",
+                        "primary-fixed-dim": "#95d3ba",
+                        "on-primary-fixed": "#002117",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#cca72f",
+                        "on-background": "#1b1b1e",
+                        "inverse-on-surface": "#f3f0f4",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#fbf8fc",
+                        "surface-container": "#f0edf1",
+                        "on-tertiary-fixed": "#241a00",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#e4e1e5",
+                        "on-secondary-fixed-variant": "#474743",
+                        "surface-dim": "#dcd9dd",
+                        "surface-container-low": "#f5f3f6",
+                        "on-surface": "#1b1b1e",
+                        "surface-variant": "#e4e1e5",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "secondary-container": "#e5e2dd"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "container-max": "1440px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "xxl": "64px",
+                        "xl": "40px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Playfair Display"],
+                        "display-lg": ["Playfair Display"],
+                        "headline-lg": ["Playfair Display"],
+                        "body-lg": ["Public Sans"],
+                        "headline-lg-mobile": ["Playfair Display"],
+                        "body-md": ["Public Sans"],
+                        "body-sm": ["Public Sans"],
+                        "label-md": ["Public Sans"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface h-full flex overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- Side Navigation Shell -->
+<aside class="hidden md:flex flex-col h-screen w-64 fixed right-0 top-0 py-lg bg-secondary-container border-l border-outline-variant transition-all duration-200 ease-in-out z-40">
+<div class="px-4 mb-xl">
+<h1 class="font-headline-md text-headline-md text-primary">Lumière Beauty</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">الإدارة المتميزة</p>
+</div>
+<nav class="flex-1 overflow-y-auto no-scrollbar font-body-md text-body-md">
+<ul class="space-y-xs">
+<li><a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#"><span class="material-symbols-outlined">dashboard</span> لوحة القيادة</a></li>
+<li><a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#"><span class="material-symbols-outlined">calendar_today</span> التقويم</a></li>
+<li><a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#"><span class="material-symbols-outlined">groups</span> العملاء</a></li>
+<li><a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#"><span class="material-symbols-outlined">content_cut</span> الخدمات</a></li>
+<li><a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#"><span class="material-symbols-outlined">badge</span> الموظفين</a></li>
+<!-- Active State -->
+<li><a class="flex items-center gap-3 px-4 py-3 text-primary border-r-4 border-primary bg-surface font-bold hover:bg-surface-container-highest transition-colors" href="#"><span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">point_of_sale</span> نقطة البيع</a></li>
+<li><a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#"><span class="material-symbols-outlined">inventory_2</span> المخزون</a></li>
+<li><a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#"><span class="material-symbols-outlined">loyalty</span> الولاء</a></li>
+<li><a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#"><span class="material-symbols-outlined">campaign</span> التسويق</a></li>
+<li><a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#"><span class="material-symbols-outlined">assessment</span> التقارير</a></li>
+<li><a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors" href="#"><span class="material-symbols-outlined">settings</span> الإعدادات</a></li>
+</ul>
+</nav>
+<div class="px-4 mt-auto pt-4 border-t border-outline-variant">
+<div class="flex items-center gap-3">
+<img alt="Practitioner Profile" class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="A close up portrait of a professional salon manager, smiling warmly in a beautifully lit, modern wellness sanctuary with light cream and taupe tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAp0pBDOeX-ixfbqDZadZYocwZI91bE0-7PK8IsItsqzUF3I_aajWyq1vb9f5wNtq-BWWZ96QfdccSCJIMPu-GldbtY-i4gE1NEa1td8ws62PHQ95vNdbPmZMhLo9ndE9Xc56ffMW-qpYdpnKENlcwHsJVNQhSBPBW2a7a9H_8mVZ41J9FpDXVe0zcyJtoa4y8mT6ucxxdwVMeSkLnLK74ZKhZeG-KrTMJfQChac03kMxEeMFIOgc8U"/>
+<div>
+<p class="font-body-md text-body-md font-medium text-on-surface">إيما بلان</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">مدير</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col md:mr-64 h-screen bg-surface-container-lowest">
+<!-- Top Nav -->
+<header class="flex justify-between items-center h-16 px-xl w-full sticky top-0 z-30 bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-lg">
+<h2 class="font-headline-md text-headline-md text-primary hidden lg:block">نقطة البيع</h2>
+<nav class="hidden md:flex gap-6 font-body-md text-body-md">
+<a class="text-primary font-bold border-b-2 border-primary pb-1" href="#">فرع باريس</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">فرع لندن</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:bg-surface-container p-2 rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container p-2 rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="hidden lg:flex items-center gap-2 bg-primary text-on-primary px-4 py-2 rounded-full font-body-sm text-body-sm hover:bg-surface-tint transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                    موعد جديد
+                </button>
+</div>
+</header>
+<!-- POS Workspace -->
+<div class="flex-1 flex overflow-hidden">
+<!-- Left Column: Catalog -->
+<section class="flex-1 flex flex-col bg-surface-container-lowest border-l border-outline-variant">
+<!-- Search & Filter -->
+<div class="p-lg border-b border-outline-variant bg-surface">
+<div class="relative mb-md">
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pr-10 pl-4 py-3 bg-surface-container-lowest border border-outline-variant rounded-lg font-body-md text-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all" placeholder="البحث عن الخدمات، المنتجات، أو مسح الباركود..." type="text"/>
+</div>
+<!-- Categories -->
+<div class="flex gap-2 overflow-x-auto no-scrollbar pb-2">
+<button class="px-4 py-2 bg-primary text-on-primary rounded-full font-body-sm text-body-sm whitespace-nowrap active:scale-95 transition-transform">الكل</button>
+<button class="px-4 py-2 bg-surface-container border border-outline-variant text-on-surface rounded-full font-body-sm text-body-sm whitespace-nowrap hover:bg-surface-container-high active:scale-95 transition-all">تصفيف الشعر</button>
+<button class="px-4 py-2 bg-surface-container border border-outline-variant text-on-surface rounded-full font-body-sm text-body-sm whitespace-nowrap hover:bg-surface-container-high active:scale-95 transition-all">اللون والعلاجات</button>
+<button class="px-4 py-2 bg-surface-container border border-outline-variant text-on-surface rounded-full font-body-sm text-body-sm whitespace-nowrap hover:bg-surface-container-high active:scale-95 transition-all">منتجات التجزئة</button>
+<button class="px-4 py-2 bg-surface-container border border-outline-variant text-on-surface rounded-full font-body-sm text-body-sm whitespace-nowrap hover:bg-surface-container-high active:scale-95 transition-all">بطاقات الهدايا</button>
+</div>
+</div>
+<!-- Catalog Grid -->
+<div class="flex-1 overflow-y-auto p-lg grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-md content-start">
+<!-- Item Card -->
+<button class="group flex flex-col bg-surface border border-outline-variant rounded-xl overflow-hidden hover:border-primary hover:shadow-[0_4px_20px_-5px_rgba(0,0,0,0.05)] transition-all text-right">
+<div class="h-32 bg-secondary-container w-full relative">
+<div class="bg-cover bg-center w-full h-full opacity-80 group-hover:opacity-100 transition-opacity" data-alt="A bright, minimalist salon styling station with a large round mirror, elegant styling tools neatly arranged on a clean white countertop, bathed in soft, natural light." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBvmZXSFQI4MGPrcZfd_CKgakhx1cu4ro4c1Xp7NQywdUykXW78m29SaGX8gNOOiaLhUsZZRrHaCpJrOhSPQykaQwojw-OkS7-95r9Kzpy4L_r-fMCxcQN_Pn7iaBguQftXMta3GYqKzZQN_cAY1KZ2Xpw0E1sVsFfFTn5d9bOumNK-7OL4mZiA0W6GECm6PdYZYFFHQANdSoDc-VAlXd6oAqZ0BsPSs0IeH8xvaHgADEk2fOXj6JdE')"></div>
+<div class="absolute top-2 left-2 bg-surface-container-lowest/90 px-2 py-1 rounded text-label-md font-label-md text-primary backdrop-blur-sm">45د</div>
+</div>
+<div class="p-3">
+<h3 class="font-body-md text-body-md font-medium text-on-surface truncate">قص وسيشوار مميز</h3>
+<p class="font-body-sm text-body-sm text-primary mt-1">€85.00</p>
+</div>
+</button>
+<button class="group flex flex-col bg-surface border border-outline-variant rounded-xl overflow-hidden hover:border-primary hover:shadow-[0_4px_20px_-5px_rgba(0,0,0,0.05)] transition-all text-right">
+<div class="h-32 bg-secondary-container w-full relative">
+<div class="bg-cover bg-center w-full h-full opacity-80 group-hover:opacity-100 transition-opacity" data-alt="A close up of luxurious hair coloring bowls and premium brushes resting on a smooth taupe surface, beautifully lit to highlight the sleek, modern aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA__Iq5xyKjd9Agw3OTv9HF7otS6-aVAUOakjcpGjsrjwOf1XQOuERv2uEVQzppRCA2khN4D4SYOejyydFHD_Uf42DwAPcvleVUA88HxpZTsbu98nO5vFPdAT7cQmrAuGDThe2ZP1rDKw7HdaFrEE4D9zoNK9_Bp5wo5QXBeTsL_VV0w4oQcY02lUjF5GWuU9Hv2EPbkeYZgdnANLtRFNgMoY2Vr--BqL1j-6fBMQFBMUtJWZN8M5h_')"></div>
+<div class="absolute top-2 left-2 bg-surface-container-lowest/90 px-2 py-1 rounded text-label-md font-label-md text-primary backdrop-blur-sm">120د</div>
+</div>
+<div class="p-3">
+<h3 class="font-body-md text-body-md font-medium text-on-surface truncate">بالياج كامل</h3>
+<p class="font-body-sm text-body-sm text-primary mt-1">€195.00</p>
+</div>
+</button>
+<button class="group flex flex-col bg-surface border border-outline-variant rounded-xl overflow-hidden hover:border-primary hover:shadow-[0_4px_20px_-5px_rgba(0,0,0,0.05)] transition-all text-right">
+<div class="h-32 bg-secondary-container w-full relative">
+<div class="bg-cover bg-center w-full h-full opacity-80 group-hover:opacity-100 transition-opacity" data-alt="A high end salon retail display shelf featuring elegantly branded, minimalist shampoo and conditioner bottles against a pure white background with soft, diffused lighting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC2v7KNCqDYa2QFqUyY7b6hNV0daNQULW0Mx0eIReTq1qhHHejQBsKIM31cMIGCTSUexVFOL-MDgsQ_eWUGx9VLtwTPsN1aw8v_3tZYwqbnSb4jiJsr6trS4wWfziPFXj2VFDRSmxECyPKJ7IM0u7mndgkFdyOWBt9HB47_fYbC8mb1vV5cAvGqJdHA_qLD-MeX4Zsy4y1AK7mrGNLJMqtSBf-hhzgjeAax1CMjGma-xsh_Hld3kG3c')"></div>
+</div>
+<div class="p-3">
+<p class="text-label-md font-label-md text-on-surface-variant mb-1 uppercase tracking-wider">تجزئة</p>
+<h3 class="font-body-md text-body-md font-medium text-on-surface truncate">ماسك لوميير للترطيب</h3>
+<p class="font-body-sm text-body-sm text-primary mt-1">€42.00</p>
+</div>
+</button>
+<button class="group flex flex-col bg-surface border border-outline-variant rounded-xl overflow-hidden hover:border-primary hover:shadow-[0_4px_20px_-5px_rgba(0,0,0,0.05)] transition-all text-right">
+<div class="h-32 bg-secondary-container w-full relative flex items-center justify-center">
+<span class="material-symbols-outlined text-[48px] text-on-surface-variant opacity-50 group-hover:text-primary transition-colors">credit_card</span>
+</div>
+<div class="p-3">
+<h3 class="font-body-md text-body-md font-medium text-on-surface truncate">بطاقة هدايا مخصصة</h3>
+<p class="font-body-sm text-body-sm text-primary mt-1">متغير</p>
+</div>
+</button>
+<button class="group flex flex-col bg-surface border border-outline-variant rounded-xl overflow-hidden hover:border-primary hover:shadow-[0_4px_20px_-5px_rgba(0,0,0,0.05)] transition-all text-right">
+<div class="h-32 bg-secondary-container w-full relative">
+<div class="bg-cover bg-center w-full h-full opacity-80 group-hover:opacity-100 transition-opacity" data-alt="A relaxing hair washing station in a luxury salon, featuring a deep black basin, comfortable tan leather chair, and warm ambient lighting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB91wUEUusWq_gT7iQ-n_QLaEYGf4aI44kuAH99PipOrv9b1V2fBGXkAt9qIL6Gy6zXqHNEQKR0HFA04mmxQWSLUH5IVgWYG802-rJQ19L8f2nJg31RuiRvTOW9IS0cFjT24eQkivFmXzymJ1JbAEg435isiUKmW-MkkFE1aT4zHqraxdG5LDEmkzPM9iDuqnWvEBym4NHmbXkDpiigU1_F50QhOgLMxj_X3xzyqCwlQkoi2VMzrw77')"></div>
+<div class="absolute top-2 left-2 bg-surface-container-lowest/90 px-2 py-1 rounded text-label-md font-label-md text-primary backdrop-blur-sm">30د</div>
+</div>
+<div class="p-3">
+<h3 class="font-body-md text-body-md font-medium text-on-surface truncate">ترطيب عميق</h3>
+<p class="font-body-sm text-body-sm text-primary mt-1">€55.00</p>
+</div>
+</button>
+</div>
+</section>
+<!-- Right Column: Cart -->
+<section class="w-[400px] flex flex-col bg-surface border-r border-outline-variant shadow-[-10px_0_20px_-10px_rgba(0,0,0,0.02)] z-10 relative">
+<!-- Customer Selection -->
+<div class="p-md border-b border-outline-variant bg-surface-container-lowest">
+<div class="flex items-center justify-between mb-sm">
+<h3 class="font-label-md text-label-md text-on-surface uppercase">التذكرة الحالية</h3>
+<span class="text-label-md font-label-md text-on-surface-variant">#10442</span>
+</div>
+<button class="w-full flex items-center gap-3 p-3 border border-outline-variant rounded-lg hover:border-primary transition-colors bg-surface text-right group">
+<div class="w-10 h-10 bg-secondary-container rounded-full flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined">person_add</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-medium text-on-surface">إضافة عميل</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">إرفاق للولاء والتاريخ</p>
+</div>
+</button>
+</div>
+<!-- Cart Items -->
+<div class="flex-1 overflow-y-auto p-md space-y-3 bg-surface-container-low">
+<!-- Line Item 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-3 group relative overflow-hidden">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="font-body-md text-body-md font-medium text-on-surface">قص وسيشوار مميز</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px]">person</span>
+<span>مع سارة ج.</span>
+</p>
+</div>
+<p class="font-body-md text-body-md text-on-surface">€85.00</p>
+</div>
+<div class="flex justify-between items-center border-t border-outline-variant pt-2 mt-2">
+<div class="flex items-center gap-2">
+<button class="w-6 h-6 rounded-full border border-outline-variant flex items-center justify-center hover:bg-surface-container text-on-surface-variant"><span class="material-symbols-outlined text-[14px]">remove</span></button>
+<span class="font-body-sm text-body-sm text-on-surface">1</span>
+<button class="w-6 h-6 rounded-full border border-outline-variant flex items-center justify-center hover:bg-surface-container text-on-surface-variant"><span class="material-symbols-outlined text-[14px]">add</span></button>
+</div>
+<button class="text-error opacity-0 group-hover:opacity-100 transition-opacity font-body-sm text-body-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Line Item 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-3 group relative overflow-hidden">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h4 class="font-body-md text-body-md font-medium text-on-surface">ماسك لوميير للترطيب</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[16px]">inventory_2</span>
+<span>تجزئة</span>
+</p>
+</div>
+<p class="font-body-md text-body-md text-on-surface">€42.00</p>
+</div>
+<div class="flex justify-between items-center border-t border-outline-variant pt-2 mt-2">
+<div class="flex items-center gap-2">
+<button class="w-6 h-6 rounded-full border border-outline-variant flex items-center justify-center hover:bg-surface-container text-on-surface-variant"><span class="material-symbols-outlined text-[14px]">remove</span></button>
+<span class="font-body-sm text-body-sm text-on-surface">1</span>
+<button class="w-6 h-6 rounded-full border border-outline-variant flex items-center justify-center hover:bg-surface-container text-on-surface-variant"><span class="material-symbols-outlined text-[14px]">add</span></button>
+</div>
+<button class="text-error opacity-0 group-hover:opacity-100 transition-opacity font-body-sm text-body-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Totals & Actions -->
+<div class="p-md bg-surface-container-lowest border-t border-outline-variant shadow-[0_-4px_10px_rgba(0,0,0,0.02)]">
+<div class="space-y-2 mb-md">
+<div class="flex justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>المجموع الفرعي</span>
+<span>€127.00</span>
+</div>
+<div class="flex justify-between font-body-sm text-body-sm text-on-surface-variant">
+<span>الضريبة (20%)</span>
+<span>€25.40</span>
+</div>
+<div class="flex justify-between font-headline-md text-headline-md text-on-surface pt-2 border-t border-outline-variant">
+<span>الإجمالي</span>
+<span class="text-primary">€152.40</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2 mb-2">
+<button class="py-3 border border-outline-variant text-on-surface rounded-lg font-body-sm text-body-sm hover:bg-surface-container transition-colors">حفظ مسودة</button>
+<button class="py-3 border border-outline-variant text-on-surface rounded-lg font-body-sm text-body-sm hover:bg-surface-container transition-colors flex justify-center items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">sell</span> خصم
+                        </button>
+</div>
+<button class="w-full py-4 bg-primary text-on-primary rounded-xl font-headline-lg-mobile text-headline-lg-mobile flex justify-between px-6 items-center hover:bg-surface-tint active:scale-[0.98] transition-all shadow-md">
+<span>دفع</span>
+<span>€152.40</span>
+</button>
+</div>
+</section>
+</div>
+</main>
+</body></html>
