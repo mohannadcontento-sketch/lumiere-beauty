@@ -58,5 +58,8 @@ server.log
 /download/
 /tests/
 /mini-services/
+/examples/
+/.zscripts/
+/Caddyfile
 worklog.md
 prompt
